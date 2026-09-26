@@ -23,8 +23,7 @@ const reports = [
       { label: '综合建议',   value: '可用于移植' },
     ],
 
-    // 概念定性描述（来自论文 Table 1 概念名称，仅展示定性结论）
-    // 概念名称必须与论文 Table 1 一致，不得自行创造
+    // 形态学指标的定性展示
     concepts: [
       { nameEn: 'symmetrical blastomeres',      nameCn: '卵裂球对称性',   direction: 'pos', qualitative: '基本良好' },
       { nameEn: 'clear cytoplasm',              nameCn: '细胞质清晰度',   direction: 'pos', qualitative: '良好' },
@@ -57,7 +56,7 @@ const reports = [
     keyPoints: [
       { label: '细胞均一性', value: '基本均一' },
       { label: '发育速率',   value: '略慢' },
-      { label: '碎片化比例', value: '少量（5–20%）' },
+      { label: '碎片化比例', value: '少量（10–25%）' },
       { label: '综合建议',   value: '可用于移植' },
     ],
 
@@ -93,7 +92,7 @@ const reports = [
     keyPoints: [
       { label: '细胞均一性', value: '良好' },
       { label: '发育速率',   value: '略慢' },
-      { label: '碎片化比例', value: '少量（5–20%）' },
+      { label: '碎片化比例', value: '少量（10–25%）' },
       { label: '综合建议',   value: '可用于移植' },
     ],
 

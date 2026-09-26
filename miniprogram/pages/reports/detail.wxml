@@ -41,7 +41,7 @@
       </view>
     </view>
 
-    <!-- ③ 概念指标区（论文 Table 1 概念，定性展示） -->
+    <!-- ③ 形态学指标区 -->
     <view class="section-card">
       <view class="section-title">
         <text class="section-icon">🔬</text>
