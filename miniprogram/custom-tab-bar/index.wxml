@@ -1,0 +1,22 @@
+<!-- custom-tab-bar/index.wxml -->
+<view class="tab-bar">
+  <view
+    wx:for="{{tabs}}"
+    wx:key="path"
+    class="tab-item {{selected === index ? 'active' : ''}}"
+    bindtap="onTabTap"
+    data-index="{{index}}"
+    data-path="{{item.path}}"
+  >
+    <!-- 未读角标（仅消息Tab显示） -->
+    <view wx:if="{{index === 0 && unreadCount > 0}}" class="badge">
+      {{unreadCount > 99 ? '99+' : unreadCount}}
+    </view>
+
+    <!-- 图标 -->
+    <view class="tab-icon">{{item.icon}}</view>
+
+    <!-- 文字 -->
+    <text class="tab-label">{{item.label}}</text>
+  </view>
+</view>

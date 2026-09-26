@@ -1,0 +1,265 @@
+/* pages/assistant/assistant.wxss */
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* 顶部说明栏 */
+.info-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 32rpx;
+  background: var(--primary-light);
+  border-bottom: 1rpx solid #AED6F1;
+  flex-shrink: 0;
+}
+
+.info-icon {
+  font-size: 40rpx;
+  flex-shrink: 0;
+}
+
+.info-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.info-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.info-sub {
+  font-size: 20rpx;
+  color: var(--muted);
+}
+
+/* 对话区域 */
+.chat-scroll {
+  flex: 1;
+  overflow: hidden;
+}
+
+.chat-body {
+  padding: 24rpx 28rpx 80rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 气泡行 */
+.bubble-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 14rpx;
+}
+
+.bubble-row.left {
+  flex-direction: row;
+}
+
+.bubble-row.right {
+  flex-direction: row-reverse;
+}
+
+/* 头像 */
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  flex-shrink: 0;
+}
+
+.bot-avatar {
+  background: var(--primary-light);
+  border: 2rpx solid #AED6F1;
+  font-size: 32rpx;
+}
+
+.user-avatar {
+  background: var(--primary);
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+/* 气泡 */
+.bubble {
+  max-width: 540rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.bot-bubble {
+  background: var(--card);
+  color: var(--text);
+  border: 1rpx solid var(--border);
+  border-bottom-left-radius: 6rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.user-bubble {
+  background: var(--primary);
+  color: #fff;
+  border-bottom-right-radius: 6rpx;
+}
+
+/* 打字动画 */
+.typing-bubble {
+  padding: 20rpx 28rpx;
+}
+
+.typing-dots {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  height: 28rpx;
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.dot1 { animation-delay: 0s; }
+.dot2 { animation-delay: 0.2s; }
+.dot3 { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-8rpx); opacity: 1; }
+}
+
+/* 快捷问题区 */
+.quick-wrap {
+  padding: 8rpx 0 4rpx;
+}
+
+.quick-label {
+  font-size: 22rpx;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 14rpx;
+  padding-left: 78rpx;
+}
+
+/* 快捷问题改为 2×2 网格，按钮更大更易点击 */
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+  padding-left: 78rpx;
+}
+
+.quick-btn {
+  background: var(--card);
+  border: 2rpx solid #D0E8FF;
+  color: var(--text);
+  font-size: 24rpx;
+  padding: 20rpx 20rpx;
+  border-radius: 16rpx;
+  line-height: 1.5;
+  text-align: left;
+  box-shadow: 0 2rpx 8rpx rgba(26,110,189,0.06);
+}
+
+/* 底部输入栏 */
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 16rpx 28rpx;
+  background: var(--card);
+  border-top: 1rpx solid var(--border);
+  flex-shrink: 0;
+  /* 兼容底部安全区 */
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+}
+
+.chat-input {
+  flex: 1;
+  height: 72rpx;
+  padding: 0 24rpx;
+  background: var(--bg);
+  border: 2rpx solid var(--border);
+  border-radius: 36rpx;
+  font-size: 26rpx;
+  color: var(--text);
+}
+
+.chat-placeholder {
+  color: #C0C8D0;
+}
+
+.send-btn {
+  flex-shrink: 0;
+  height: 72rpx;
+  padding: 0 32rpx;
+  border-radius: 36rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.send-btn.disabled {
+  background: var(--border);
+  color: var(--muted);
+}
+
+/* 助手「小芽」改版样式 */
+.assistant-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.assistant-emoji {
+  font-size: 36rpx;
+}
+
+.assistant-tag {
+  font-size: 18rpx;
+  background: var(--primary);
+  color: #fff;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  font-weight: 500;
+}
+
+.welcome-line {
+  display: block;
+  margin-bottom: 8rpx;
+  font-size: 26rpx;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.welcome-hint {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+  margin-top: 8rpx;
+  line-height: 1.6;
+}

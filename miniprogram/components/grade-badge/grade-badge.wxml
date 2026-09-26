@@ -1,0 +1,5 @@
+<!-- components/grade-badge/grade-badge.wxml -->
+<!-- 用法：<grade-badge grade="{{1}}" size="large" /> -->
+<view class="badge badge-{{size}} grade-{{grade}}">
+  <text class="badge-text">{{labelMap[grade]}}</text>
+</view>

@@ -1,0 +1,69 @@
+/* pages/index/index.wxss */
+
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* 顶部标题栏 */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 40rpx 24rpx;
+  background: var(--card);
+  border-bottom: 1rpx solid var(--border);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.unread-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  min-width: 40rpx;
+  text-align: center;
+}
+
+.header-action {
+  font-size: 26rpx;
+  color: var(--primary);
+}
+
+/* 消息列表 */
+.msg-list {
+  background: var(--card);
+  margin-top: 16rpx;
+}
+
+/* 空/加载状态 */
+.state-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 48rpx;
+  gap: 20rpx;
+}
+
+.state-icon {
+  font-size: 80rpx;
+}
+
+.state-text {
+  font-size: 26rpx;
+  color: var(--muted);
+}

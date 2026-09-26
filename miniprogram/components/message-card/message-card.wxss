@@ -1,0 +1,89 @@
+/* components/message-card/message-card.wxss */
+
+.card-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 24rpx;
+  padding: 28rpx 32rpx;
+  background: var(--card);
+  border-bottom: 1rpx solid var(--border);
+}
+
+.card-wrap.unread {
+  background: #F0F7FF;
+}
+
+/* 类型图标区 */
+.icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.type-report   { background: #EBF5FB; }
+.type-note     { background: #EAF4FB; }
+.type-reminder { background: #EAF7EA; }
+
+.icon-emoji {
+  font-size: 36rpx;
+}
+
+/* 内容区 */
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+.summary {
+  font-size: 24rpx;
+  color: var(--muted);
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.time {
+  font-size: 22rpx;
+  color: #B0BAC3;
+}
+
+/* 右箭头 */
+.arrow {
+  font-size: 36rpx;
+  color: #C8D0D8;
+  align-self: center;
+  flex-shrink: 0;
+}

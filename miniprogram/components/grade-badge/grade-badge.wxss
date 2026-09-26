@@ -1,0 +1,54 @@
+/* components/grade-badge/grade-badge.wxss */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8rpx;
+  font-weight: 700;
+}
+
+/* 尺寸 */
+.badge-small {
+  padding: 4rpx 14rpx;
+  font-size: 22rpx;
+  border-radius: 6rpx;
+}
+.badge-medium {
+  padding: 8rpx 20rpx;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+}
+.badge-large {
+  padding: 16rpx 32rpx;
+  font-size: 36rpx;
+  border-radius: 12rpx;
+}
+
+/* Grade 1：绿色 */
+.grade-1 {
+  background: #E8F8EF;
+  color: #27AE60;
+  border: 2rpx solid #A9DFBF;
+}
+
+/* Grade 2：黄色 */
+.grade-2 {
+  background: #FEFCE8;
+  color: #B7950B;
+  border: 2rpx solid #F9E79F;
+}
+
+/* Grade 3：橙色 */
+.grade-3 {
+  background: #FEF0E7;
+  color: #E67E22;
+  border: 2rpx solid #FAD7A0;
+}
+
+/* Grade 4：红色 */
+.grade-4 {
+  background: #FDEDEC;
+  color: #E74C3C;
+  border: 2rpx solid #FADBD8;
+}

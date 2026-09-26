@@ -1,0 +1,106 @@
+<!-- pages/assistant/assistant.wxml -->
+<view class="page">
+
+  <!-- 顶部说明栏：助手改版为「小芽」 -->
+  <view class="info-bar">
+    <view class="info-text-wrap">
+      <view class="assistant-name-row">
+        <text class="assistant-emoji">🌱</text>
+        <text class="info-title">小芽</text>
+        <text class="assistant-tag">AI 助手</text>
+      </view>
+      <text class="info-sub">您的 IVF 陪伴助手 · 解读报告 · 答疑解惑</text>
+    </view>
+  </view>
+
+  <!-- 对话区域（可滚动） -->
+  <scroll-view
+    class="chat-scroll"
+    scroll-y
+    scroll-top="{{scrollTop}}"
+    scroll-with-animation
+  >
+    <view class="chat-body">
+
+      <!-- 欢迎消息：温暖口语化打招呼 -->
+      <view class="bubble-row left">
+        <view class="avatar bot-avatar">🌱</view>
+        <view class="bubble bot-bubble">
+          <text class="welcome-line">👋 你好，我是小芽～</text>
+          <text class="welcome-line">你可以问我报告里那些看不懂的词，或者聊聊 IVF 流程里的疑惑。</text>
+          <text class="welcome-hint">⚠️ 小芽只做科普解读，具体诊断请以医生意见为准。</text>
+        </view>
+      </view>
+
+      <!-- 快捷问题气泡（仅在对话为空或最后一条是助手消息时显示） -->
+      <view wx:if="{{showQuickButtons}}" class="quick-wrap">
+        <text class="quick-label">你可能想问 👇</text>
+        <view class="quick-grid">
+          <view
+            wx:for="{{questions}}"
+            wx:key="index"
+            class="quick-btn"
+            bindtap="onQuickTap"
+            data-question="{{item}}"
+          >{{item}}</view>
+        </view>
+      </view>
+
+      <!-- 对话记录 -->
+      <block wx:for="{{messages}}" wx:key="id">
+        <!-- 用户消息：右对齐蓝色 -->
+        <view wx:if="{{item.role === 'user'}}" class="bubble-row right">
+          <view class="bubble user-bubble">
+            <text>{{item.text}}</text>
+          </view>
+          <view class="avatar user-avatar">我</view>
+        </view>
+
+        <!-- 助手消息：左对齐白色 -->
+        <view wx:else class="bubble-row left">
+          <view class="avatar bot-avatar">🌱</view>
+          <view class="bubble bot-bubble">
+            <text>{{item.text}}</text>
+          </view>
+        </view>
+      </block>
+
+      <!-- 打字动画（加载中） -->
+      <view wx:if="{{isTyping}}" class="bubble-row left">
+        <view class="avatar bot-avatar">🌱</view>
+        <view class="bubble bot-bubble typing-bubble">
+          <view class="typing-dots">
+            <view class="dot dot1"></view>
+            <view class="dot dot2"></view>
+            <view class="dot dot3"></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 滚动锚点 -->
+      <view id="chat-bottom" style="height: 20rpx;"></view>
+
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入栏（固定在底部） -->
+  <view class="input-bar">
+    <input
+      class="chat-input"
+      type="text"
+      placeholder="输入问题，如：碎片化高有什么影响？"
+      placeholder-class="chat-placeholder"
+      value="{{inputText}}"
+      bindinput="onInput"
+      bindconfirm="onSend"
+      confirm-type="send"
+      maxlength="200"
+      disabled="{{isTyping}}"
+    />
+    <view
+      class="send-btn {{(inputText && !isTyping) ? 'active' : 'disabled'}}"
+      bindtap="onSend"
+    >发送</view>
+  </view>
+
+</view>

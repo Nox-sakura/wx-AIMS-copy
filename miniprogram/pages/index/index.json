@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "消息",
+  "usingComponents": {
+    "message-card": "/components/message-card/message-card"
+  }
+}

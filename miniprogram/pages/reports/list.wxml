@@ -1,0 +1,57 @@
+<!-- pages/reports/list.wxml -->
+<view class="page">
+
+  <!-- 顶部说明栏 -->
+  <view class="info-bar">
+    <text class="info-text">以下报告仅展示关键结论，数据已脱敏处理</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="state-center">
+    <text class="state-text">加载中…</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{reports.length === 0}}" class="state-center">
+    <text class="state-icon">📄</text>
+    <text class="state-text">暂无评估报告</text>
+    <text class="state-sub">报告生成后将通过消息通知您</text>
+  </view>
+
+  <!-- 报告列表 -->
+  <view wx:else class="report-list">
+    <view
+      wx:for="{{reports}}"
+      wx:key="id"
+      class="report-card {{item.read ? '' : 'unread'}}"
+      bindtap="onReportTap"
+      data-id="{{item.id}}"
+    >
+      <!-- 卡片头部：Grade标记 + 日期 -->
+      <view class="card-header">
+        <grade-badge grade="{{item.grade}}" size="small" />
+        <view class="card-meta">
+          <text class="card-date">{{item.assessDate}}</text>
+          <view wx:if="{{item.status === 'pending'}}" class="status-tag pending">审核中</view>
+          <view wx:else class="status-tag approved">已终审</view>
+        </view>
+      </view>
+
+      <!-- 胚胎编号 + 结论摘要 -->
+      <view class="card-body">
+        <text class="embryo-no">胚胎编号：{{item.embryoNo}}</text>
+        <text class="grade-desc">{{item.gradeDesc}}</text>
+      </view>
+
+      <!-- 卡片底部：医生 + 未读标记 -->
+      <view class="card-footer">
+        <text class="doctor-name">{{item.doctor}}</text>
+        <view class="footer-right">
+          <view wx:if="{{!item.read}}" class="unread-dot"></view>
+          <text class="view-detail">查看详情 ›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

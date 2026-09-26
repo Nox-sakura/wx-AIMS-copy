@@ -1,0 +1,22 @@
+<!-- components/message-card/message-card.wxml -->
+<view class="card-wrap {{item.read ? '' : 'unread'}}" bindtap="onTap">
+
+  <!-- 左侧类型图标 -->
+  <view class="icon-wrap type-{{item.type}}">
+    <text class="icon-emoji">{{iconMap[item.type]}}</text>
+  </view>
+
+  <!-- 中间内容 -->
+  <view class="content">
+    <view class="title-row">
+      <text class="title">{{item.title}}</text>
+      <view wx:if="{{!item.read}}" class="dot"></view>
+    </view>
+    <text class="summary">{{item.summary}}</text>
+    <text class="time">{{item.time}}</text>
+  </view>
+
+  <!-- 右侧箭头 -->
+  <view class="arrow">›</view>
+
+</view>

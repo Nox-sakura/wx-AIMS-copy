@@ -1,0 +1,120 @@
+<!-- pages/login/login.wxml -->
+<view class="container">
+
+  <!-- 顶部蓝色区域 -->
+  <view class="header">
+    <view class="logo-wrap">
+      <view class="logo-icon">🔬</view>
+      <view class="app-name">胚胎评估患者端</view>
+      <view class="hospital-name">辽宁妇婴医院</view>
+    </view>
+  </view>
+
+  <!-- 表单卡片 -->
+  <view class="form-card">
+
+    <!-- 步骤指示器 -->
+    <view class="steps">
+      <view class="step {{currentStep === 1 ? 'active' : 'done'}}">
+        <view class="step-dot">{{currentStep > 1 ? '✓' : '1'}}</view>
+        <text class="step-label">手机验证</text>
+      </view>
+      <view class="step-line"></view>
+      <view class="step {{currentStep === 2 ? 'active' : (currentStep > 2 ? 'done' : 'inactive')}}">
+        <view class="step-dot">2</view>
+        <text class="step-label">绑定患者ID</text>
+      </view>
+    </view>
+
+    <!-- Step 1：手机号 + 验证码 -->
+    <view wx:if="{{currentStep === 1}}" class="step-content">
+      <view class="field-group">
+        <view class="field-label">手机号</view>
+        <input
+          class="input-field"
+          type="number"
+          maxlength="11"
+          placeholder="请输入您的手机号"
+          placeholder-class="placeholder"
+          bindinput="onPhoneInput"
+          value="{{phone}}"
+        />
+      </view>
+
+      <view class="field-group">
+        <view class="field-label">验证码</view>
+        <view class="sms-row">
+          <input
+            class="input-field sms-input"
+            type="number"
+            maxlength="6"
+            placeholder="请输入6位验证码"
+            placeholder-class="placeholder"
+            bindinput="onCodeInput"
+            value="{{code}}"
+          />
+          <button
+            class="btn-sms {{smsDisabled ? 'disabled' : ''}}"
+            disabled="{{smsDisabled}}"
+            bindtap="onSendSms"
+          >{{smsText}}</button>
+        </view>
+      </view>
+
+      <!-- 测试提示（仅 Mock 阶段显示） -->
+      <view class="mock-hint">
+        <text>测试模式：验证码填 123456</text>
+      </view>
+
+      <button
+        class="btn-primary {{step1Valid ? '' : 'disabled'}}"
+        disabled="{{!step1Valid}}"
+        bindtap="onNextStep"
+      >下一步</button>
+    </view>
+
+    <!-- Step 2：患者ID绑定 -->
+    <view wx:if="{{currentStep === 2}}" class="step-content">
+      <view class="back-row" bindtap="onBack">
+        <text class="back-arrow">←</text>
+        <text class="back-text">返回上一步</text>
+      </view>
+
+      <view class="field-group">
+        <view class="field-label">患者ID</view>
+        <input
+          class="input-field"
+          type="text"
+          placeholder="请输入患者编号，如 P20240001"
+          placeholder-class="placeholder"
+          bindinput="onPatientIdInput"
+          value="{{patientId}}"
+        />
+        <view class="field-hint">患者ID可在医院就诊凭证或检查报告上查找</view>
+      </view>
+
+      <!-- 测试提示（仅 Mock 阶段显示） -->
+      <view class="mock-hint">
+        <text>测试模式：患者ID填 P20240001 或 P20240002</text>
+      </view>
+
+      <button
+        class="btn-primary {{patientId ? '' : 'disabled'}}"
+        disabled="{{!patientId || loading}}"
+        bindtap="onBind"
+      >{{loading ? '绑定中…' : '完成绑定'}}</button>
+    </view>
+
+    <!-- 错误提示 -->
+    <view wx:if="{{errorMsg}}" class="error-bar">
+      <text>⚠️ {{errorMsg}}</text>
+    </view>
+
+  </view>
+
+  <!-- 底部声明 -->
+  <view class="footer-note">
+    <text>本系统仅供患者查询评估结果，\n不构成医疗诊断建议</text>
+  </view>
+
+</view>

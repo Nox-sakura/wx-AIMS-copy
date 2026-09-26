@@ -1,0 +1,124 @@
+<!-- pages/profile/profile.wxml -->
+<view class="page">
+
+  <!-- 顶部用户卡片 -->
+  <view class="user-card">
+    <view class="user-avatar">
+      <text class="avatar-text">{{patientName[0] || '患'}}</text>
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{patientName}}</text>
+      <text class="user-id">患者ID：{{patientId}}</text>
+    </view>
+    <view class="bind-tag">已绑定</view>
+  </view>
+
+  <!-- 用药/随访提醒 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">💊 用药 / 随访提醒</text>
+    </view>
+    <view wx:if="{{reminders.length === 0}}" class="empty-tip">暂无提醒</view>
+    <view wx:else class="reminder-list">
+      <view
+        wx:for="{{reminders}}"
+        wx:key="id"
+        class="reminder-item {{item.active ? '' : 'inactive'}}"
+      >
+        <view class="reminder-icon type-{{item.type}}">
+          {{item.type === 'medication' ? '💊' : item.type === 'followup' ? '🏥' : '🛏'}}
+        </view>
+        <view class="reminder-content">
+          <text class="reminder-title">{{item.title}}</text>
+          <text class="reminder-detail">{{item.detail}}</text>
+          <view wx:if="{{item.times.length > 0}}" class="reminder-times">
+            <text wx:for="{{item.times}}" wx:key="index" class="time-tag">{{item}}</text>
+          </view>
+        </view>
+        <view wx:if="{{!item.active}}" class="expired-tag">已过期</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="section">
+    <view class="menu-list">
+
+      <!-- 消息通知设置 -->
+      <view class="menu-item" bindtap="onOpenNotifySettings">
+        <view class="menu-left">
+          <text class="menu-icon">🔔</text>
+          <text class="menu-label">消息通知设置</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <!-- 查看访问记录 -->
+      <view class="menu-item" bindtap="onViewAccessLogs">
+        <view class="menu-left">
+          <text class="menu-icon">📋</text>
+          <text class="menu-label">报告查看记录</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-sub">{{accessLogCount}} 条记录</text>
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+
+      <!-- 隐私说明 -->
+      <view class="menu-item" bindtap="onViewPrivacy">
+        <view class="menu-left">
+          <text class="menu-icon">🔒</text>
+          <text class="menu-label">隐私说明</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <!-- 联系医院 -->
+      <view class="menu-item" open-type="contact" bindcontact="onContact">
+        <view class="menu-left">
+          <text class="menu-icon">📞</text>
+          <text class="menu-label">联系医院</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+
+    </view>
+  </view>
+
+  <!-- 解除绑定 -->
+  <view class="unbind-wrap">
+    <view class="btn-unbind" bindtap="onUnbind">解除绑定并退出</view>
+    <text class="unbind-hint">解绑后需重新验证身份才能查看报告</text>
+  </view>
+
+  <!-- 版本号 -->
+  <view class="version-wrap">
+    <text class="version-text">v1.0.0 · 数据存储于医院服务器，不经微信保存</text>
+  </view>
+
+</view>
+
+<!-- 访问记录弹窗 -->
+<view wx:if="{{showLogs}}" class="modal-mask" bindtap="onCloseLog">
+  <view class="modal-box" catchtap="">
+    <view class="modal-header">
+      <text class="modal-title">报告查看记录</text>
+      <text class="modal-close" bindtap="onCloseLog">✕</text>
+    </view>
+    <scroll-view class="log-scroll" scroll-y>
+      <view wx:if="{{accessLogs.length === 0}}" class="log-empty">暂无记录</view>
+      <block wx:else>
+        <view
+          wx:for="{{accessLogs}}"
+          wx:key="index"
+          class="log-item"
+        >
+          <text class="log-report">报告 {{item.reportId}}</text>
+          <text class="log-time">{{item.time}}</text>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="modal-tip">记录保存于本设备，用于医疗合规追溯</view>
+  </view>
+</view>

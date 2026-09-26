@@ -1,0 +1,59 @@
+{
+  "entryPagePath": "pages/login/login",
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/reports/list",
+    "pages/reports/detail",
+    "pages/assistant/assistant",
+    "pages/profile/profile"
+  ],
+  "tabBar": {
+    "custom": true,
+    "color": "#7F8C8D",
+    "selectedColor": "#1A6EBD",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "消息",
+        "iconPath": "assets/icons/message.png",
+        "selectedIconPath": "assets/icons/message_active.png"
+      },
+      {
+        "pagePath": "pages/reports/list",
+        "text": "报告",
+        "iconPath": "assets/icons/report.png",
+        "selectedIconPath": "assets/icons/report_active.png"
+      },
+      {
+        "pagePath": "pages/assistant/assistant",
+        "text": "小芽",
+        "iconPath": "assets/icons/assistant.png",
+        "selectedIconPath": "assets/icons/assistant_active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile_active.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1A6EBD",
+    "navigationBarTitleText": "胚胎评估",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F7FA"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "subscribeMsgConfig": {
+    "report_ready": "TEMPLATE_ID_REPORT_PLACEHOLDER",
+    "doctor_note": "TEMPLATE_ID_NOTE_PLACEHOLDER",
+    "medication": "TEMPLATE_ID_MED_PLACEHOLDER"
+  }
+}
