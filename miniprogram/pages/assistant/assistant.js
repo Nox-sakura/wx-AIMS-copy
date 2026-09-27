@@ -58,6 +58,10 @@ Page({
     this._sendMessage(text)
   },
 
+  _scrollToBottom() {
+    this.setData({ scrollTop: this.data.scrollTop + 100000 })
+  },
+
   // ── 核心：发送消息并获取回答 ──────────────────────
 
   async _sendMessage(text) {
@@ -68,8 +72,7 @@ Page({
       messages,
       isTyping: true,
       showQuickButtons: false,  // 对话开始后隐藏快捷问题
-      scrollTop: 999999,
-    })
+    }, () => this._scrollToBottom())
 
     try {
       // 2. 调用接口（先尝试预设QA，不匹配时走自由对话）
@@ -84,16 +87,14 @@ Page({
         messages: [...this.data.messages, botMsg],
         isTyping: false,
         showQuickButtons: true,  // 助手回答后重新显示快捷问题
-        scrollTop: 999999,
-      })
+      }, () => this._scrollToBottom())
     } catch (e) {
       const errMsg = { id: genId(), role: 'bot', text: '网络异常，请检查网络连接后重试。' }
       this.setData({
         messages: [...this.data.messages, errMsg],
         isTyping: false,
         showQuickButtons: true,
-        scrollTop: 999999,
-      })
+      }, () => this._scrollToBottom())
     }
   },
 })

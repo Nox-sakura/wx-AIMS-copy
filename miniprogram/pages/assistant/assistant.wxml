@@ -32,20 +32,6 @@
         </view>
       </view>
 
-      <!-- 快捷问题气泡（仅在对话为空或最后一条是助手消息时显示） -->
-      <view wx:if="{{showQuickButtons}}" class="quick-wrap">
-        <text class="quick-label">你可能想问 👇</text>
-        <view class="quick-grid">
-          <view
-            wx:for="{{questions}}"
-            wx:key="index"
-            class="quick-btn"
-            bindtap="onQuickTap"
-            data-question="{{item}}"
-          >{{item}}</view>
-        </view>
-      </view>
-
       <!-- 对话记录 -->
       <block wx:for="{{messages}}" wx:key="id">
         <!-- 用户消息：右对齐蓝色 -->
@@ -64,6 +50,20 @@
           </view>
         </view>
       </block>
+
+      <!-- 快捷问题始终跟在最新回答后面 -->
+      <view wx:if="{{showQuickButtons}}" class="quick-wrap">
+        <text class="quick-label">你可能想问 👇</text>
+        <view class="quick-grid">
+          <view
+            wx:for="{{questions}}"
+            wx:key="index"
+            class="quick-btn"
+            bindtap="onQuickTap"
+            data-question="{{item}}"
+          >{{item}}</view>
+        </view>
+      </view>
 
       <!-- 打字动画（加载中） -->
       <view wx:if="{{isTyping}}" class="bubble-row left">

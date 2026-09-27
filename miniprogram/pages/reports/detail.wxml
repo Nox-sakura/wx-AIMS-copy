@@ -17,7 +17,7 @@
       <text class="grade-desc">{{report.gradeDesc}}</text>
 
       <view class="meta-row">
-        <text class="meta-item">评估日期：{{report.assessDate}}</text>
+        <text class="meta-item">评估时间：{{report.assessDate}}<text wx:if="{{report.assessTime}}"> {{report.assessTime}}</text></text>
         <text class="meta-item">胚胎编号：{{report.embryoNo}}</text>
         <text class="meta-item">负责医生：{{report.doctor}}</text>
       </view>
